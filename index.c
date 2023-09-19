@@ -19,7 +19,7 @@ int main() {
     struct tm *localTime;
 
     // Receba o código da máquina
-    printf("Digite o código da maquina: ");
+    printf("Digite o codigo da maquina: ");
     scanf("%s", codigo_maq);
 
     currentTime = time(NULL);
