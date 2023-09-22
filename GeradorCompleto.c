@@ -17,23 +17,43 @@ void gerarSenha(char *senha, int tamanho) {
     senha[tamanho] = '\0'; // Adiciona o caractere nulo para finalizar a string
 }
 
-int main() {
+void menuGeraSenha() {
     int tamanho;
     printf("Digite o tamanho da senha desejada: ");
     scanf("%d", &tamanho);
 
     if (tamanho <= 0) {
         printf("Tamanho inválido. A senha deve ter pelo menos 1 caractere.\n");
-        return 1;
     }
-
     char senha[tamanho + 1]; // +1 para o caractere nulo
-
     srand(time(NULL)); // Inicializa a semente para números aleatórios com base no tempo
-
     gerarSenha(senha, tamanho);
 
     printf("Senha gerada: %s\n", senha);
+}
 
+int main() {
+    int menu = 0;
+    while (menu != 2) {// Enquanto não digitarmos um número válido
+    printf(
+    "*********************\n"
+    "* Gerador de Senhas *\n"
+    "* Senhas Armazenadas*\n"
+    "* 1 - Gerar senha   *\n"
+    "* 2 - Sair          *\n"
+    "* *******************\n");
+    scanf("%d", &menu);
+    switch (menu){
+        case 1:
+            menuGeraSenha();
+            break;
+        case 2:
+            printf("Saindo...\n");
+            break;
+        default:
+            printf("Opção inválida\n");
+            break;
+    }
+}
     return 0;
 }
