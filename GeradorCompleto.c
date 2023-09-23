@@ -17,14 +17,16 @@ void gerarSenha(char *senha, int tamanho) {
     senha[tamanho] = '\0'; // Adiciona o caractere nulo para finalizar a string
 }
 
-void guardaSenha(senhas*, char senha){
-    
-    senhas[] = {};
+void guardaSenha(senha, char *senhas){
+    if (strlen(senha) != 0)
+    senhas[] = senha;
 }
 
-void mostraSenha(char *senhasGuardadas,int ) {
-    if (strlen() != 0)
-    senhas[] = ""
+void mostraSenha(char *senhasGuardadas) {
+    printf("Senhas geradas: \n");
+    for (int i = 0; i < 10; i++) {
+        printf("%s\n", senhasGuardadas[i]);
+    }
 }
 
 
@@ -43,6 +45,8 @@ void menuGeraSenha() {
     srand(time(NULL)); // Inicializa a semente para números aleatórios com base no tempo
     gerarSenha(senha, tamanho);
 
+    guardaSenha(senha);
+
     printf("Senha gerada: %s\n", senha);
 }
 
@@ -55,6 +59,7 @@ int main() {
     "* Senhas Armazenadas*\n"
     "* 1 - Gerar senha   *\n"
     "* 2 - Sair          *\n"
+    "* 3 - Mostrar senhas*\n"
     "* *******************\n");
     scanf("%d", &menu);
     switch (menu){
@@ -63,6 +68,9 @@ int main() {
             break;
         case 2:
             printf("Saindo...\n");
+            break;
+        case 3:
+            mostraSenha();
             break;
         default:
             printf("Opção inválida\n");
