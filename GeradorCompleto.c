@@ -7,7 +7,7 @@
 void gerarSenha(char *senha, int tamanho) {
     const char caracteres[] = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz!@#$%^&*()_+{}[]<>?";
 
-    int numCaracteres = strlen(caracteres);
+    int numCaracteres = strlen(caracteres); // le o tamanho do array de caracteres
 
     for (int i = 0; i < tamanho; i++) {
         int indice = rand() % numCaracteres;
@@ -27,7 +27,7 @@ int main() {
         return 1;
     }
 
-    char senha[tamanho + 1]; // +1 para o caractere nulo
+    char senha[tamanho + 1]; // +1 para o caractere nulo (Caracter nulo é o caracter que para o laço for)
 
     srand(time(NULL)); // Inicializa a semente para números aleatórios com base no tempo
 
