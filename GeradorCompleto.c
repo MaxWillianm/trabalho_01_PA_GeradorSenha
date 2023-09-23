@@ -17,21 +17,23 @@ void gerarSenha(char *senha, int tamanho) {
     senha[tamanho] = '\0'; // Adiciona o caractere nulo para finalizar a string
 }
 
-void guardaSenha(senha, char *senhas){
-    if (strlen(senha) != 0)
-    senhas[] = senha;
-}
+void guardaSenha(char *senhas, char senha) {
+    for(int i = 0; i < 10; i++)
+        for(int j = 0; j < 10; j++)
+        strcat(senhas[i], senha[j]);
+    }
 
-void mostraSenha(char *senhasGuardadas) {
+void mostraSenha(exibeSenha) {
     printf("Senhas geradas: \n");
     for (int i = 0; i < 10; i++) {
-        printf("%s\n", senhasGuardadas[i]);
+        // printf("%s\n", exibeSenha[i]);
+        printf("passou");
     }
 }
 
 
 
-void menuGeraSenha() {
+void menuGeraSenha(senhasGeradas) {
     int tamanho;
     printf("Digite o tamanho da senha desejada: ");
     scanf("%d", &tamanho);
@@ -41,17 +43,23 @@ void menuGeraSenha() {
     }
 
     char senha[tamanho + 1]; // +1 para o caractere nulo (Caracter nulo é o caracter que para o laço for)
+    char senhas[9];
 
     srand(time(NULL)); // Inicializa a semente para números aleatórios com base no tempo
     gerarSenha(senha, tamanho);
-
-    guardaSenha(senha);
-
     printf("Senha gerada: %s\n", senha);
+
+    guardaSenha(senhas, senha);
+    printf("passou aqui 2");
+
+    memcpy(senhasGeradas, senhas, sizeof(senhas));
+
 }
 
 int main() {
     int menu = 0;
+    char senhasGeradas[9];
+    char exibeSenha[9];
     while (menu != 2) {// Enquanto não digitarmos um número válido
     printf(
     "*********************\n"
@@ -64,18 +72,21 @@ int main() {
     scanf("%d", &menu);
     switch (menu){
         case 1:
-            menuGeraSenha();
+            menuGeraSenha(senhasGeradas);
             break;
         case 2:
             printf("Saindo...\n");
             break;
         case 3:
-            mostraSenha();
+            mostraSenha(exibeSenha);
             break;
         default:
             printf("Opção inválida\n");
             break;
     }
+
+    memcpy(senhasGeradas, exibeSenha, sizeof(exibeSenha));
 }
+    printf("%s", senhasGeradas);
     return 0;
 }
