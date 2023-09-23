@@ -17,6 +17,18 @@ void gerarSenha(char *senha, int tamanho) {
     senha[tamanho] = '\0'; // Adiciona o caractere nulo para finalizar a string
 }
 
+void guardaSenha(senhas*, char senha){
+    
+    senhas[] = {};
+}
+
+void mostraSenha(char *senhasGuardadas,int ) {
+    if (strlen() != 0)
+    senhas[] = ""
+}
+
+
+
 void menuGeraSenha() {
     int tamanho;
     printf("Digite o tamanho da senha desejada: ");
