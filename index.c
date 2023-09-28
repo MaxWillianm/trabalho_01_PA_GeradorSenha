@@ -1,29 +1,74 @@
 #include <stdio.h>
-#include <string.h>
+#include <stdlib.h>
 #include <time.h>
+#include <string.h>
 
-// Função para codificar os valores
-void codificarSenha(char *senha, int deslocamento) {
-    int tamanho = strlen(senha);
+#define MAX_SENHAS 100 // Número máximo de senhas a serem armazenadas
+#define TAMANHO_SENHA 10 // Tamanho padrão da senha
+
+struct Senhas {
+    char senha[TAMANHO_SENHA + 1];
+};
+
+// Função para gerar uma senha aleatória
+void gerarSenha(char *senha, int tamanho) {
+    const char caracteres[] = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz!@#$%^&*()_+{}[]<>?";
+
+    int numCaracteres = strlen(caracteres); // le o tamanho do array de caracteres
 
     for (int i = 0; i < tamanho; i++) {
-        senha[i] = (senha[i] - '0' + deslocamento) + '0';
+        int indice = rand() % numCaracteres;
+        senha[i] = caracteres[indice];
     }
+    senha[tamanho] = '\0'; // Adiciona o caractere nulo para finalizar a string
 }
 
 int main() {
-    char senha[100];
-    int deslocamento;
+    int menu = 0;
 
-    printf("Digite a senha numérica: ");
-    scanf("%s", senha);
+    struct Senhas senhas[MAX_SENHAS];
+    int numSenhas = 0;
 
-    printf("Digite um valor de deslocamento: ");
-    scanf("%d", &deslocamento);
-
-    codificarSenha(senha, deslocamento);
-
-    printf("Senha codificada: %s\n", senha);
-
+    while (menu != 3) {// Enquanto não digitarmos um número válido
+    printf(
+    "*********************\n"
+    "* Gerador de Senhas *\n"
+    "* 1 - Gerar senha   *\n"
+    "* 2 - Mostrar senhas*\n"
+    "* 3 - Sair          *\n"
+    "* *******************\n");
+    printf("Escolha uma opcao: ");
+    scanf("%d", &menu);
+    switch (menu){
+        case 1:
+            if (numSenhas < MAX_SENHAS) {
+                gerarSenha(senhas[numSenhas].senha, TAMANHO_SENHA);
+                printf("Senha gerada: %s\n", senhas[numSenhas].senha);
+                printf("\n");
+                printf("\n");
+                printf("\n");
+                numSenhas++;
+            } else {
+                printf("Limite de senhas atingido. Impossível gerar mais senhas.\n");
+            }
+            break;
+        case 2:
+            printf("Senhas geradas:\n");
+            for (int i = 0; i < numSenhas; i++) {
+                printf("%d: %s\n", i + 1, senhas[i].senha);
+            }
+            printf("\n");
+            printf("\n");
+            printf("\n");
+            break;
+            break;
+        case 3:
+            printf("Saindo do programa...\n");
+            break;
+        default:
+            printf("Opção inválida\n");
+            break;
+    }
+}
     return 0;
 }
